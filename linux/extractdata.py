@@ -6,7 +6,7 @@ typeS = []
 
 
 async def extract_data_from_database():
-    file = r"D:\Anoproxy\Anoproxy\linux\output.txt"
+    file = "output.txt"
 
     with open(file, "r") as file:
         data = file.read()
@@ -38,6 +38,6 @@ async def extract_data_from_database():
 
 asyncio.run(extract_data_from_database())
 
-print(ipS)
-print(typeS)
-print(portS)
+# print(ipS)
+# print(typeS)
+# print(portS)
