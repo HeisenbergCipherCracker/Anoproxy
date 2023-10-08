@@ -1,5 +1,8 @@
 import re
 import asyncio
+ipS = []
+portS = []
+typeS = []
 
 
 async def extract_data_from_database():
@@ -20,6 +23,7 @@ async def extract_data_from_database():
 
     # Iterate over the matches and print the extracted information
     for i in range(len(ip_matches)):
+        global portS,ipS,typeS
         ip = ip_matches[i] if i < len(ip_matches) else ""
         port = port_matches[i] if i < len(port_matches) else ""
         proxy_type = type_matches[i] if i < len(type_matches) else ""
@@ -28,5 +32,12 @@ async def extract_data_from_database():
         print("Port:", port)
         print("Proxy Type:", proxy_type)
         print()
+        ipS.append(ip)
+        portS.append(port)
+        typeS.append(proxy_type)
 
 asyncio.run(extract_data_from_database())
+
+print(ipS)
+print(typeS)
+print(portS)
