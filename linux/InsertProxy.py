@@ -5,14 +5,15 @@ from checkdependencies import check_for_proxy_chains_installation
 
 
 async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
+    """This coroutine function will Insert the extracted values into the file /etc/proxychains4.conf """
     try:
-        config_file = "/etc/proxychains4.conf"
+        config_file = "/etc/proxychains4.conf"  #* Declaring the config file
 
-        # Read the contents of the config file
+        #* Read the contents of the config file
         with open(config_file, "r") as file:
             config_lines = file.readlines()
 
-        # Find the desired section in the config file
+        #* Find the desired section in the config file
         proxy_list_start = None
         for i, line in enumerate(config_lines):
             if line.startswith("[ProxyList]"):
@@ -26,7 +27,7 @@ async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
             # Insert the new proxy lines into the config file
             config_lines[proxy_list_start:proxy_list_start] = new_proxy_lines
 
-            # Modify the config lines to enable dynamic_chain and disable strict_chain
+            #TODO: Modify the config lines to enable dynamic_chain and disable strict_chain
             for i, line in enumerate(config_lines):
                 if line.startswith("dynamic_chain"):
                     # Remove the # from the beginning of the line if present
@@ -36,17 +37,23 @@ async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
                 elif line.startswith("strict_chain"):
                     config_lines[i] = "#strict_chain\n"
 
-            # Write the updated contents back to the config file
+            #* Write the updated contents back to the config file
             with open(config_file, "w") as file:
                 file.writelines(config_lines)
 
             print("Proxies inserted successfully!")
     except Exception as e:
         print(e)
+        return False
+
+    except KeyboardInterrupt:
+        print("[INFO] User exited the program")
+        return False
 
 # Filled lists of proxy information
 
 # Call the function
-insert_proxies_to_config(ipS, portS, typeS)
+#? insert_proxies_to_config(ipS, portS, typeS)
+#TODO: use if __name__ == main
 
 # print(I)

@@ -39,6 +39,15 @@ async def check_for_proxy_chains_installation():
     except subprocess.CalledProcessError:
         print("[INFO] It seems like that the proxycinas is installed. please check by running command (proxychains)")
 
+    except Exception as e:
+        print("error:",e)
+        return False
+
+    except KeyboardInterrupt:
+        print("[INFO] User exited the program")
+        return False
+
+
 
 # asyncio.run(check_for_proxy_chains_installation())
 
@@ -57,13 +66,34 @@ async def check_for_system_tor_installation():
         # prin)
         return False
 
+    except Exception as e:
+        print("unexpected error:",e)
+        return False
+
+    except KeyboardInterrupt:
+        print("[INFO] user closed the program")
+        return False
+    
+    except subprocess.SubprocessError:
+        print("[INFO] Tor is not installed")
+        return False
+
 async def install_system_tor():
+    """That will install system tor """
     try:
         subprocess.run(["sudo", "apt", "install", "-y", "tor"], check=True)
         print("System Tor installed successfully.")
         return True
     except subprocess.CalledProcessError as e:
         print(f"Failed to install System Tor: {e}")
+        return False
+
+    except Exception as e:
+        print("Unexpected error:",e)
+        return False
+
+    except KeyboardInterrupt:
+        print("[INFO] User exited the program")
         return False
 
 

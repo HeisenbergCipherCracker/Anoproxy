@@ -20,29 +20,43 @@ import threading
 import asyncio
 
 async def main():
-    print(logo)
-    while True:
-        start = input("Please enter Yes to start the process and Type 'exit' to exit the program.")
-        match start:
-            case "Yes":
-                tasks = [
-                    asyncio.to_thread(check_for_proxy_chains_installation),
-                    check_for_system_tor_installation()
-                ]
+    try:
+        """This function will run all the needed coroutine functions """
+        print(logo)
+        while True:
+            #* create a while loop over
+            start = input("Please enter Yes to start the process and Type 'exit' to exit the program.")
+            match start: #* Use match for the conditional statement (similar to SWITCH in C++)
+                case "Yes":
+                    tasks = [
+                        asyncio.to_thread(check_for_proxy_chains_installation),
+                        check_for_system_tor_installation()
+                    ] #* Create a task coroutine task list
 
-                results = await asyncio.gather(*tasks)
+                    results = await asyncio.gather(*tasks) #* Pause the program until the tasks are done
 
-                if all(results):
-                    print("All dependencies are installed.")
-                    tasksNext = [
-                        extract_data_from_database(),
-                        InsertProxy.insert_proxies_to_config()
-                    ]
-                    resultNext = await asyncio.gather(*tasksNext)
-                    if all(resultNext):
-                        print("Proxies inserted successfully!")
-                        print("All th tasks has been\n done.Please enter /etc/proxychains4.conf \nfile and remove the # of the dynamic chain and add #\n for strict chain to be able to use proxy chains.")
-            case "no":
-                exit()
+                    if all(results): #* Checks if all the tasks are done
+                        print("All dependencies are installed.")
+                        tasksNext = [
+                            extract_data_from_database(),
+                            InsertProxy.insert_proxies_to_config()
+                        ]
+                        resultNext = await asyncio.gather(*tasksNext)
+                        if all(resultNext):
+                            print("Proxies inserted successfully!")
+                            print("All th tasks has been\n done.Please enter /etc/proxychains4.conf \nfile and remove the # of the dynamic chain and add #\n for strict chain to be able to use proxy chains.\n if you have problem with the program\n please run command: systemctl start tor")
+                case "no":
+                    exit()
+                    #* Creating the same for next tasks
 
-asyncio.run(main())
+    except Exception as e:
+        print(e)
+        return False
+
+    except KeyboardInterrupt:
+        print("[INFO] User exited the program")
+        return False
+
+#? asyncio.run(main())
+#? asyncio.get_event_loop().run_until_complete(main())
+

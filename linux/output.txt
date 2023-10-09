@@ -1,0 +1,240 @@
+id: 1
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 2
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 3
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 1
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 2
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 3
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 4
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 5
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 6
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 1
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 2
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 3
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 4
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 5
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 6
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 7
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 8
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 9
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 1
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 2
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 3
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 4
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 5
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 6
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 7
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 8
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 9
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
+id: 10
+ip_address: 145.239.85.58
+port: 9300
+country_city: Poland
+speed: 500
+type: SOCKS4, SOCKS5
+level_of_anonymity: High
+
+id: 11
+ip_address: 46.4.96.137
+port: 1080
+country_city: Germany
+speed: 580
+type: SOCKS5
+level_of_anonymity: High
+
+id: 12
+ip_address: 47.91.88.100
+port: 1080
+country_city: Germany "Frankfurt am Main"
+speed: 260
+type: SOCKS5
+level_of_anonymity: High
+
