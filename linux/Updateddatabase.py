@@ -40,6 +40,7 @@ class Database(metaclass=Singleton):
         self.userTYPE = userTYPE
         conn = sqlite3.connect(self.db_file)
         cursor = conn.cursor()
+        fet = cursor.fetchall()
         cursor.execute('''INSERT INTO proxy_servers (ip_address, port, type) VALUES (?, ?, ?)''', (userIP, userPORT, userTYPE))
         conn.commit()
         conn.close()
@@ -85,6 +86,28 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
+    async def add_column_to_proxy_servers_table_for_fast_one(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''ALTER TABLE proxy_servers ADD COLUMN fast_proxy_server TEXT''')
+        cursor.execute("UPDATE proxy_servers SET fast_proxy_server = 'Yes' WHERE id=23 ")
+        conn.commit()
+        conn.close()
+        
+    async def display_the_saved_proxy_servers(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM saved_proxy_servers''')
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+            
+        conn.commit()
+        conn.close()
+    
+
+
+        
 database = Database()
 
         
@@ -101,7 +124,9 @@ async def main():
     await database.create_table_for_saved_proxy_servers()
     await database.insert_into_saved_proxy_servers()
     await database.display_saved_proxy_servers()
+    await database.add_column_to_proxy_servers_table_for_fast_one()
     # await database.create_table_for_main_proxy_servers()
+    await database.insert_into_saved_proxy_servers()
     # await database.insert_to_main_proxy_servers()
     # await database.display_main_proxy_servers()
     # await database.special_proxy_server_tables()
