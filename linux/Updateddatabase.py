@@ -55,6 +55,35 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
+    async def create_table_for_saved_proxy_servers(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''CREATE TABLE IF NOT EXISTS saved_proxy_servers (
+                        id INTEGER PRIMARY KEY AUTOINCREMENT,
+                        ip_address TEXT,
+                        port INTEGER,
+                        type TEXT
+                        )''')
+        conn.commit()
+        conn.close()
+        
+    async def insert_into_saved_proxy_servers(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO saved_proxy_servers (ip_address, port, type) VALUES ("89.207.132.170", 1080, "SOCKS5")''')
+        conn.commit()
+        conn.close()
+        
+    async def display_saved_proxy_servers(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM saved_proxy_servers''')
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+            
+        conn.commit()
+        conn.close()
         
         
 
@@ -64,6 +93,9 @@ async def main():
     await database.insert_some_value()
     await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5")
     await database.display_the_info_of_proxy_servers_table()
+    await database.create_table_for_saved_proxy_servers()
+    await database.insert_into_saved_proxy_servers()
+    await database.display_saved_proxy_servers()
     # await database.create_table_for_main_proxy_servers()
     # await database.insert_to_main_proxy_servers()
     # await database.display_main_proxy_servers()
