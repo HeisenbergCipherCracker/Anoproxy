@@ -1,10 +1,10 @@
 import extractdata
 import asyncio
-from extractdata import ipS,portS,typeS
-from checkdependencies import check_for_proxy_chains_installation
+# from extractdata import ipS,portS,typeS #* we may need that 
+from Updateddatabase import datalistIP,datalistPORT,datalistTYPE
 
-
-async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
+#* we can add the commecnted module list as an argument to the function
+async def insert_proxies_to_config(ipS=datalistIP, portS=datalistPORT, typeS=datalistTYPE):
     """This coroutine function will Insert the extracted values into the file /etc/proxychains4.conf """
     try:
         config_file = "/etc/proxychains4.conf"  #* Declaring the config file
@@ -22,14 +22,16 @@ async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
 
         if proxy_list_start is not None:
             # Construct new proxy lines from the provided lists
-            new_proxy_lines = [f"{proxy_type} {ip} {port}\n" for ip, port, proxy_type in zip(ipS, portS, typeS)]
+            global datalistIP,datalistPORT,datalistTYPE
+            new_proxy_lines = [f"{proxy_type} {ip} {port}\n" for ip, port, proxy_type in zip(datalistIP,datalistPORT,datalistTYPE)]
 
             # Insert the new proxy lines into the config file
             config_lines[proxy_list_start:proxy_list_start] = new_proxy_lines
 
             #TODO: Modify the config lines to enable dynamic_chain and disable strict_chain
             for i, line in enumerate(config_lines):
-                if line.startswith("dynamic_chain"):
+                if line.startswith("dynamicchain"):
+                    #? Convert to dymanicchain?
                     # Remove the # from the beginning of the line if present
                     if config_lines[i].startswith("#"):
                         config_lines[i] = config_lines[i][1:].lstrip()
@@ -50,10 +52,18 @@ async def insert_proxies_to_config(ipS=ipS, portS=portS, typeS=typeS):
         print("[INFO] User exited the program")
         return False
 
-# Filled lists of proxy information
+async def main():
 
-# Call the function
-#? insert_proxies_to_config(ipS, portS, typeS)
+# Filled lists of proxy information
+    from Updateddatabase import datalistIP,datalistPORT,datalistTYPE
+    # Call the function
+    from Updateddatabase import database
+    await database.display_proxy_servers_table()
+    print(datalistIP)
+    print(datalistPORT)
+    await insert_proxies_to_config(datalistIP,datalistPORT,datalistTYPE)
 #TODO: use if __name__ == main
 
 # print(I)
+
+asyncio.run(main())

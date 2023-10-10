@@ -1,6 +1,16 @@
 import sqlite3
 import asyncio
 
+
+
+############################################################################333
+
+datalistIP = []
+datalistPORT = []
+datalistTYPE = []
+
+########################################################################################
+
 class Singleton(type):
     """Create a singleton class for metaclass preparation """
     _instances = {} #* Create a insinstance null
@@ -178,6 +188,21 @@ class Database(metaclass=Singleton):
             # print(row) #* we will need that
             newls = list(row)
             print(newls)
+            for _ in newls:
+                global datalistIP,datalistPORT,datalistTYPE
+                info = (f"Ip address of proxyserver:{newls[1]}\n Port:{newls[2]}\ntype:{newls[3]}")
+                print(info)
+                ip = newls[1]
+                port = newls[2]
+                Type = newls[3]
+                datalistIP.append(ip)
+                datalistPORT.append(port)
+                datalistTYPE.append(Type)
+            
+            print(datalistIP)
+            print(datalistPORT)
+            print(datalistTYPE)
+            
             
         conn.commit()
         conn.close()
@@ -189,6 +214,7 @@ class Database(metaclass=Singleton):
         
 database = Database()
 
+# print(datalistIP)
         
         
 
@@ -196,6 +222,8 @@ async def main():
     # database = Database()
     global database
     database = Database()
+    # insert_proxies_to_config(datalistIP,datalistPORT,datalistTYPE)
+    # await database.display_proxy_servers_table()
     # await database.create_table_for_proxy_servers() #* we need that
     # await database.insert_some_value() #* we need that
     # await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5") #* can be enabled
@@ -206,7 +234,7 @@ async def main():
     # await database.delete_data_from_proxy_servers_table(usercmd=6) #* ew need that
     # await database.display_saved_proxy_servers()
     # await database.display_the_info_of_proxy_servers_table() #* we need that
-    await database.display_the_saved_proxy_servers()
+    # await database.display_the_saved_proxy_servers()
     
     # await database.display_the_info_of_proxy_servers_table()
     # await database.add_column_to_proxy_servers_table_for_fast_one()

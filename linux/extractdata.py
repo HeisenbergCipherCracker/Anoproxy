@@ -12,8 +12,8 @@ typeS = []
 async def extract_data_from_database():
     try:
         """This coroutine will extract the data from the sqlite3 C++"""
-        # file = "output.txt" #* Indicating the output.txt file as an target file
-        file = r"D:\Anoproxy\Anoproxy\linux\output.txt" #* for windows
+        file = "output.txt" #* Indicating the output.txt file as an target file
+        # file = r"D:\Anoproxy\Anoproxy\linux\output.txt" #* for windows
 
         with open(file, "r") as file: #* opening the file as read mode
             data = file.read() #* read the file data
