@@ -104,6 +104,13 @@ class Database(metaclass=Singleton):
             
         conn.commit()
         conn.close()
+        
+    async def delete_data_from_proxy_servers_table(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''DELETE FROM proxy_servers WHERE id=18 ''')
+        conn.commit()
+        conn.close()
     
 
 
@@ -120,13 +127,15 @@ async def main():
     await database.create_table_for_proxy_servers()
     await database.insert_some_value()
     # await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5") #* can be enabled
-    await database.display_the_info_of_proxy_servers_table()
-    await database.create_table_for_saved_proxy_servers()
-    await database.insert_into_saved_proxy_servers()
+    # await database.display_the_info_of_proxy_servers_table()
+    # await database.create_table_for_saved_proxy_servers()
+    # await database.insert_into_saved_proxy_servers()
     await database.display_saved_proxy_servers()
-    await database.add_column_to_proxy_servers_table_for_fast_one()
+    # await database.display_the_info_of_proxy_servers_table()
+    # await database.add_column_to_proxy_servers_table_for_fast_one()
     # await database.create_table_for_main_proxy_servers()
-    await database.insert_into_saved_proxy_servers()
+    # await database.insert_into_saved_proxy_servers()
+    # await database.delete_data_from_proxy_servers_table()
     # await database.insert_to_main_proxy_servers()
     # await database.display_main_proxy_servers()
     # await database.special_proxy_server_tables()
