@@ -119,9 +119,35 @@ class Database(metaclass=Singleton):
         cur.execute("ALTER TABLE fastproxy ADD COLUMN types TEXT")
         con.commit()
         con.close()
+        
+    async def create_table_for_main_proxy_servers(self):
+        con = sqlite3.connect(self.db_file)
+        cur = con.cursor()
+        cur.execute("CREATE TABLE IF NOT EXISTS mainproxy (ip TEXT, port TEXT, type TEXT)")
+        con.commit()
+        con.close()
+        
+    async def insert_to_main_proxy_servers(self):
+        con = sqlite3.connect(self.db_file)
+        cur = con.cursor()
+        cur.execute("INSERT INTO mainproxy VALUES (?,?,?)",("145.239.85.58","9300","SOCKS5"))
+        con.commit()
+        con.close()
+        
+    async def display_main_proxy_servers(self):
+        con = sqlite3.connect(self.db_file)
+        cur = con.cursor()
+        cur.execute("SELECT * FROM mainproxy")
+        rows = cur.fetchall()
+        print(rows)
+        con.close()
 
 async def main():
     database = Database()
+    await database.create_table_for_main_proxy_servers()
+    await database.insert_to_main_proxy_servers()
+    await database.display_main_proxy_servers()
+    
     # await database.data_base_updated_for_proxyservers_holding()
     # await database.Insert_new_values_into_data_base()
     # await database.display_data_base_info()
