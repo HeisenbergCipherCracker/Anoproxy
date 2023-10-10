@@ -44,6 +44,18 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
+    async def display_the_info_of_proxy_servers_table(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM proxy_servers''')
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+            
+        conn.commit()
+        conn.close()
+        
+        
         
 
 async def main():
@@ -51,6 +63,7 @@ async def main():
     await database.create_table_for_proxy_servers()
     await database.insert_some_value()
     await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5")
+    await database.display_the_info_of_proxy_servers_table()
     # await database.create_table_for_main_proxy_servers()
     # await database.insert_to_main_proxy_servers()
     # await database.display_main_proxy_servers()
