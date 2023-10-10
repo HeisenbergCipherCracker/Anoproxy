@@ -34,11 +34,23 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
+    async def insert_value_by_user(self,userIP,userPORT,userTYPE):
+        self.userIP = userIP
+        self.userPORT = userPORT
+        self.userTYPE = userTYPE
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''INSERT INTO proxy_servers (ip_address, port, type) VALUES (?, ?, ?)''', (userIP, userPORT, userTYPE))
+        conn.commit()
+        conn.close()
+        
+        
 
 async def main():
     database = Database()
     await database.create_table_for_proxy_servers()
     await database.insert_some_value()
+    await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5")
     # await database.create_table_for_main_proxy_servers()
     # await database.insert_to_main_proxy_servers()
     # await database.display_main_proxy_servers()
