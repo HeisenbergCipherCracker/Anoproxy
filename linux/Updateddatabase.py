@@ -100,7 +100,9 @@ class Database(metaclass=Singleton):
         cursor.execute('''SELECT * FROM saved_proxy_servers''')
         rows = cursor.fetchall()
         for row in rows:
-            print(row)
+            # print(row) #* we will need that
+            newls = list(row)
+            print(newls)
             
         conn.commit()
         conn.close()
@@ -112,6 +114,34 @@ class Database(metaclass=Singleton):
         cursor.execute('''DELETE FROM proxy_servers WHERE id=? ''',(int(self.usercmd),))
         conn.commit()
         conn.close()
+    
+    async def display_the_info_of_proxy_servers_table(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM proxy_servers''')
+        rows = cursor.fetchall()
+        for row in rows:
+            # print(row) #* we will need that
+            newls = list(row)
+            print(newls)
+            
+        conn.commit()
+        conn.close()
+        
+    async def display_proxy_servers_table(self):
+        conn = sqlite3.connect(self.db_file)
+        cursor = conn.cursor()
+        cursor.execute('''SELECT * FROM proxy_servers''')
+        rows = cursor.fetchall()
+        for row in rows:
+            # print(row) #* we will need that
+            newls = list(row)
+            print(newls)
+            
+        conn.commit()
+        conn.close()
+    
+    
     
 
 
@@ -125,16 +155,17 @@ async def main():
     # database = Database()
     global database
     database = Database()
-    await database.create_table_for_proxy_servers()
-    await database.insert_some_value()
+    # await database.create_table_for_proxy_servers() #* we need that
+    # await database.insert_some_value() #* we need that
     # await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5") #* can be enabled
     # await database.display_the_info_of_proxy_servers_table()
     # await database.create_table_for_saved_proxy_servers()
     # await database.insert_into_saved_proxy_servers()
-    # await database.display_saved_proxy_servers()
-    await database.delete_data_from_proxy_servers_table(usercmd=6)
+    # await database.display_saved_proxy_servers() #* we need that 
+    # await database.delete_data_from_proxy_servers_table(usercmd=6) #* ew need that
     # await database.display_saved_proxy_servers()
     # await database.display_the_info_of_proxy_servers_table() #* we need that
+    await database.display_the_saved_proxy_servers()
     
     # await database.display_the_info_of_proxy_servers_table()
     # await database.add_column_to_proxy_servers_table_for_fast_one()
