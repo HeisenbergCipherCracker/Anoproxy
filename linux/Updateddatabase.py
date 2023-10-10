@@ -105,10 +105,11 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
-    async def delete_data_from_proxy_servers_table(self):
+    async def delete_data_from_proxy_servers_table(self,usercmd):
+        self.usercmd = usercmd
         conn = sqlite3.connect(self.db_file)
         cursor = conn.cursor()
-        cursor.execute('''DELETE FROM proxy_servers WHERE id=18 ''')
+        cursor.execute('''DELETE FROM proxy_servers WHERE id=? ''',(int(self.usercmd),))
         conn.commit()
         conn.close()
     
@@ -130,7 +131,11 @@ async def main():
     # await database.display_the_info_of_proxy_servers_table()
     # await database.create_table_for_saved_proxy_servers()
     # await database.insert_into_saved_proxy_servers()
-    await database.display_saved_proxy_servers()
+    # await database.display_saved_proxy_servers()
+    await database.delete_data_from_proxy_servers_table(usercmd=6)
+    # await database.display_saved_proxy_servers()
+    # await database.display_the_info_of_proxy_servers_table() #* we need that
+    
     # await database.display_the_info_of_proxy_servers_table()
     # await database.add_column_to_proxy_servers_table_for_fast_one()
     # await database.create_table_for_main_proxy_servers()
