@@ -85,13 +85,18 @@ class Database(metaclass=Singleton):
         conn.commit()
         conn.close()
         
+database = Database()
+
+        
         
 
 async def main():
+    # database = Database()
+    global database
     database = Database()
     await database.create_table_for_proxy_servers()
     await database.insert_some_value()
-    await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5")
+    # await database.insert_value_by_user("89.207.132.170", 1080, "SOCKS5") #* can be enabled
     await database.display_the_info_of_proxy_servers_table()
     await database.create_table_for_saved_proxy_servers()
     await database.insert_into_saved_proxy_servers()

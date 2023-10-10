@@ -3,6 +3,7 @@ import InsertProxy
 from extractdata import extract_data_from_database
 import threading
 from checkdependencies import check_for_proxy_chains_installation,check_for_system_tor_installation,install_system_tor
+from Updateddatabase import database
 
 logo = """                                                                          
                                                                                                                                   
@@ -25,7 +26,7 @@ async def main():
         print(logo)
         while True:
             #* create a while loop over
-            start = input("Please enter Yes to start the process and Type 'exit' to exit the program.")
+            start = input("Please enter Yes to start the process and Type 'exit' to exit the program.type adv for advanced options")
             match start: #* Use match for the conditional statement (similar to SWITCH in C++)
                 case "Yes":
                     tasks = [
@@ -48,6 +49,13 @@ async def main():
                 case "no":
                     exit()
                     #* Creating the same for next tasks
+                    
+                case "adv":
+                    choice = input("[INFO]type ADD to add proxy")
+                    match choice:
+                        case "ADD":
+                            await database.insert_value_by_user(userIP=input("[INFO] enter the ip:"),userPORT=int(input("[INFO] enter the port")),userTYPE=input("enter the type"))
+                            
 
     except Exception as e:
         print(e)
@@ -57,6 +65,6 @@ async def main():
         print("[INFO] User exited the program")
         return False
 
-#? asyncio.run(main())
-#? asyncio.get_event_loop().run_until_complete(main())
+asyncio.run(main())
+asyncio.get_event_loop().run_until_complete(main())
 
