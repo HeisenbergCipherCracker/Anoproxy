@@ -44,7 +44,8 @@ async def main():
                         print("All dependencies are installed.")
                         tasksNext = [
                             extract_data_from_database(),
-                            InsertProxy.insert_proxies_to_config()
+                            InsertProxy.insert_proxies_to_config(),
+                            install_system_tor()
                         ]
                         resultNext = await asyncio.gather(*tasksNext)
                         if all(resultNext):
@@ -89,6 +90,10 @@ async def main():
                 case "psconfig":
                     command = "cat /etc/proxychains4.conf"
                     subprocess.run(command,shell=True)
+                    
+                case "help":
+                    print("""   
+                                      How can i start using anoproxy? just type proxychains command at the beginning of the commands in terminal                    """)
                     
                     
                             
