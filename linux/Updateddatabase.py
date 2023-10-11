@@ -187,7 +187,7 @@ class Database(metaclass=Singleton):
         for row in rows:
             # print(row) #* we will need that
             newls = list(row)
-            print(newls)
+            # print(newls) #! it will be needed
             for _ in newls:
                 global datalistIP,datalistPORT,datalistTYPE
                 info = (f"Ip address of proxyserver:{newls[1]}\n Port:{newls[2]}\ntype:{newls[3]}")
@@ -199,9 +199,9 @@ class Database(metaclass=Singleton):
                 datalistPORT.append(port)
                 datalistTYPE.append(Type)
             
-            print(datalistIP)
-            print(datalistPORT)
-            print(datalistTYPE)
+            # print(datalistIP) #! will be needed
+            # print(datalistPORT) #! will be needed
+            # print(datalistTYPE) #! will be needed
             
             
         conn.commit()
